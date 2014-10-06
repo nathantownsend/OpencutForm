@@ -1,0 +1,201 @@
+<!-- Last edited: March 10 @ 19:39 PST -->
+<!doctype html>
+<html>
+  <head>
+    <base href="/api/v1/support_files/930/files/">
+    <title>AmigoCloud</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="form-single-row.css"/>
+    <link rel="stylesheet" href="font-awesome.css"/>
+    <link rel="stylesheet" href="bootstrap.min.css"/>
+    <link rel="stylesheet" href="bootstrap-datetimepicker.min.css"/>    
+<script src="jquery-1.9.1.js"></script>
+    <script src="moment-with-langs.js"></script>
+    <script src="amigo.js"></script>
+    <script src="../../../../../static/api/amigocloud/amigo-platform.js"></script>
+  </head>
+  <body>
+<div id="form-wrapper" style="padding:8px;">
+    <div class="single-row-controls" style="text-align:right;">
+      <a id="edit-form"><i class="fa fa-pencil"></i>Update Event</a>
+    </div>
+    <br />
+    <div class="name" style="text-align:left; border-bottom-style:solid; "><i><b>Currently logged condition of the item</i></b></div> 
+
+    <div id="single-row-view">
+      <ul>
+<li class="">
+          <div id="item_cat" class="value-group">
+            <span class="name">Item Category</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="">
+          <div id="items" class="value-group">
+            <span class="name">Item</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="">
+          <div id="eoi_types" class="value-group">
+            <span class="name">Elements of Interest</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="">
+          <div id="trailmarker_types" class="value-group">
+            <span class="name">Trail Markers</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="">
+          <div id="mfu_status" class="value-group">
+            <span class="name">Follow Up</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li>
+<li class="">
+          <div id="comments" class="value-group">
+            <span class="name">Comments</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li>        
+<li>
+          <div id="related-Attachments" class="value-group">
+            <span class="name">Attachments</span>
+            <span class="assignment">:</span>
+            <a class="related-table-btn"
+               onclick="AmigoPlatform.viewRelatedData('350', Amigo.row.data[0].amigo_id)"
+               style="cursor:pointer;">View</a>
+          </div>
+        </li>
+<li class="">
+          <div id="photos" class="value-group">
+            <span class="name">Photo Notes</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li>
+        <li class=" hidden">
+          <div id="ogc_fid" class="value-group">
+            <span class="name">ogc_fid</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="hidden">
+          <div id="wkb_geometry" class="value-group">
+            <span class="name">Shape</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li>
+<li class="">
+          <div id="coll_meth" class="value-group">
+            <span class="name">Location Collection</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="">
+          <div id="coll_status" class="value-group">
+            <span class="name">Location Review</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="">
+          <div id="coll_type" class="value-group">
+            <span class="name">Location Type</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li>
+<li class="">
+          <div id="created_by" class="value-group">
+            <span class="name">Logged By</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="">
+          <div id="created_date" class="value-group">
+            <span class="name">Date Logged</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="">
+          <div id="modified_by" class="value-group">
+            <span class="name">Last Follow Up By</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="">
+          <div id="modified_date" class="value-group">
+            <span class="name">Last Follow Up Date</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li><li class="hidden">
+          <div id="amigo_id" class="value-group">
+            <span class="name">amigo_id</span>
+            <span class="assignment">:</span>
+            <span class="value"></span>
+          </div>
+        </li>
+      </ul>
+</div>
+      <script>
+        // Editing this part may break some functionality.
+        // Tread lightly.
+
+        // This function is called when the page is loaded.
+        // it can be called separately to help with debugging an already loaded page.
+        var ViewPage = {};
+
+        ViewPage.OnPageReady = function () {
+
+          var permissionLevel = 'ADMIN';
+          if (AmigoPlatform.clientType() === 'web-app') {
+            AmigoPlatform.currentData = {
+              url: "/api/v1/users/10/projects/930/sql",
+              datasetUrl: "/api/v1/users/10/projects/930/datasets/6238",
+              projectUrl: "/api/v1/users/10/projects/930",
+              query: "SELECT * FROM dataset_6238 WHERE amigo_id = '{{ amigo_id }}'"
+            };
+            AmigoPlatform.initialize('view');
+
+          } else if (AmigoPlatform.clientType() === 'ios') {
+            fetchedRow = AmigoPlatform.fetchRow();
+            relatedTables = AmigoPlatform.fetchRelatedTables();
+            permissionLevel = AmigoPlatform.fetchPermissionLevel();
+            Amigo.initFormWithRow(fetchedRow, relatedTables);
+          }
+
+          var permissionMapping = {
+              edit_geometry: ['EDIT', 'ADMIN', 'OWNER']
+          };
+
+          var editBtn = $($.find('#edit-form', document));
+          if (permissionMapping.edit_geometry.indexOf(permissionLevel) == -1) {
+            editBtn.addClass('disabled').data('disabled', true);
+            editBtn.css('background-color', '#b2d495');
+          } else {
+            editBtn.css('cursor', 'pointer');
+            editBtn.click(function () {
+              AmigoPlatform.editFormWithRow(JSON.stringify(Amigo.row));
+            });
+          }
+
+          var geometryBtn = $($.find('#view-geometry', document));
+          geometryBtn.css('cursor', 'pointer');
+          geometryBtn.click(function () {
+            AmigoPlatform.viewRowGeometry(JSON.stringify(Amigo.row));
+          });
+
+        }
+
+        $(document).ready(ViewPage.OnPageReady());
+
+      </script>
+  </body>
+</html>

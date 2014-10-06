@@ -1,0 +1,405 @@
+<!-- Last edited: April 21 @ 9:45 PST -->
+<!doctype html>
+<html>
+  <head>
+    <base href="/api/v1/support_files/930/files/">
+    <title>AmigoCloud</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="form-edit.css"/>
+    <link rel="stylesheet" href="font-awesome.css"/>
+    <link rel="stylesheet" href="bootstrap.min.css"/>
+    <link rel="stylesheet" href="bootstrap-datetimepicker.min.css"/>
+
+    <script src="jquery-1.9.1.js"></script>
+    <script src="moment-with-langs.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="bootstrap-datetimepicker.min.js"></script>
+    <script src="amigo.js"></script>
+    <script src="../../../../../static/api/amigocloud/amigo-platform.js"></script>
+  </head>
+  <body>
+  <div id="form-wrapper" style="padding:8px;">
+    <div class="name" style="text-align:left; border-bottom-style:solid;">
+        <i><b>Log the current condition of the item</i></b>
+    </div>     
+<div id="single-row-view">
+      <ul>
+        
+<li>
+          <div id="mfu_status" class="value-group">
+            <label class="name">Follow Up</label>
+            
+            <span class="assignment">:</span>
+            
+            <select class="value" id="picklist-mfu_status">
+              <option value="0">Not Required</option>
+              <option value="1">Required</option>
+              <option value="2">Outstanding</option>
+              <option value="3">Resolved</option>
+              
+            </select>
+            
+            
+          </div>
+        </li>
+<li>
+          <div id="comments" class="value-group">
+            <label class="name">Comments</label>
+            
+            <span class="assignment">:</span>
+            
+            <input  type="text" class="value"
+                   
+                   
+                   ></input>
+            
+            
+          </div>
+        </li>
+<li>
+          <div id="related-Attachments" class="value-group">
+            <span class="name">Attachments</span>
+            <span class="assignment">:</span>
+            <div class="action-btn-group">
+              <a class="related-table-btn"
+                 onclick="AmigoPlatform.addRelatedData('350', Amigo.row.data[0].amigo_id)"
+                 style="cursor:pointer;">Take photo</a>
+             
+            </div>
+          </div>
+        </li>
+<li>
+          <div id="photos" class="value-group">
+            <label class="name">Photo Notes</label>
+            
+            <span class="assignment">:</span>
+            
+            <input  type="text" class="value"
+                   
+                   
+                   ></input>
+            
+            
+          </div>
+        </li>
+<li>
+          <div id="modified_by" class="value-group">
+            <label class="name">Follow Up By</label>
+            
+            <span class="assignment">:</span>
+            
+            <input  type="text" class="value" disabled
+                   
+                   
+                   ></input>
+            
+            
+          </div>
+        </li><li>
+          <div id="modified_date" class="value-group">
+            <label class="name">Follow Up Date</label>
+            
+            <span class="assignment">:</span>
+            
+            <input  type="text" class="value datetime" readonly="true" data-date-format="YYYY-MM-DD HH:mm:ss" disabled
+                   
+                   
+                   ></input>
+            
+            
+          </div>
+        </li>
+ </ul>
+      
+      <div class="button-group">
+        <a id="save-button">SAVE</a>
+        <a id="delete-button">DELETE RECORD</a>
+      </div>
+        <br />
+        
+        <!-- Read only section of the Edit form -->
+        
+        <div style="text-align:left; border-bottom-style:solid; ">
+            <i><b>Initial Item Log Information</i></b>
+        </div> 
+    
+<ul>
+<li>
+          <div id="item_cat" class="value-group">
+            <label class="name">Item Category</label>
+            
+            <span class="assignment">:</span>
+            
+            <select class="value" id="picklist-item_cat" disabled>
+              <option value="0">Undefined</option>
+              <option value="1">Urban</option>
+              <option value="2">Trail</option>
+              
+            </select>
+            
+            
+          </div>
+        </li><li>
+          <div id="items" class="value-group">
+            <label class="name">Item</label>
+            
+            <span class="assignment">:</span>
+            
+            <select class="value" id="picklist-items" disabled>
+              <option value="0">Undefined</option>
+              <option value="1">Hydrant</option>
+              <option value="2">Culvert</option>
+              <option value="3">Trail Head</option>
+              <option value="4">Trail Marker</option>
+              <option value="5">Survey Marker</option>
+              <option value="6">Element of Interest</option>
+              
+            </select>
+            
+            
+          </div>
+        </li><li>
+          <div id="eoi_types" class="value-group">
+            <label class="name">Elements of Interest</label>
+            
+            <span class="assignment">:</span>
+            
+            <select class="value" id="picklist-eoi_types" disabled>
+              <option value="0">Undefined</option>
+              <option value="1">Hazardous Material Container</option>
+              <option value="2">Hazardous Material Spill</option>
+              <option value="3">Well</option>
+              <option value="4">Outfall</option>
+              <option value="5">Intake</option>
+              <option value="6">Invasive Species</option>
+              <option value="100">Not Applicable</option>
+              
+            </select>
+            
+            
+          </div>
+        </li><li>
+          <div id="trailmarker_types" class="value-group">
+            <label class="name">Trail Markers</label>
+            
+            <span class="assignment">:</span>
+            
+            <select class="value" id="picklist-trailmarker_types" disabled>
+              <option value="0">Undefined</option>
+              <option value="1">Mile Post</option>
+              <option value="2">Trail Intersection</option>
+              <option value="3">Benchmark</option>
+              <option value="4">Rock Cairn</option>
+              <option value="5">Campsite</option>
+              <option value="6">Fishing Access</option>
+              <option value="100">Not Applicable</option>
+              
+            </select>
+            
+            
+          </div>
+        </li>
+
+        <li>
+          <div id="ogc_fid" class="value-group hidden">
+            <label class="name">ogc_fid</label>
+            
+            <span class="assignment">:</span>
+            
+            <input  type="number" step="1" class="value"
+                   
+                   disabled
+                   ></input>
+            
+            
+          </div>
+        </li><li>
+          <div id="wkb_geometry" class="value-group hidden">
+            <label class="name">Shape</label>
+            
+            <div class="action-btn-group">
+              <a class="edit-geometry-btn">Edit</a>
+            </div>
+            
+          </div>
+        </li><li>
+          <div id="created_by" class="value-group">
+            <label class="name">Item Logged By</label>
+            
+            <span class="assignment">:</span>
+            
+            <input  type="text" class="value"
+                   
+                   disabled
+                   ></input>
+            
+            
+          </div>
+        </li><li>
+          <div id="created_date" class="value-group">
+            <label class="name">Date Logged</label>
+            
+            <span class="assignment">:</span>
+            
+            <input  type="text" class="value datetime" readonly="true" data-date-format="YYYY-MM-DD HH:mm:ss" disabled
+                   
+                   
+                   ></input>
+            
+            
+          </div>
+        </li><li>
+          <div id="amigo_id" class="value-group hidden">
+            <label class="name">amigo_id</label>
+            
+            <span class="assignment">:</span>
+            
+            <input  type="text" class="value"
+                   
+                   
+                   ></input>
+            
+            
+          </div>
+        </li><li>
+          <div id="coll_meth" class="value-group">
+            <label class="name">Location Collection</label>
+            
+            <span class="assignment">:</span>
+            
+            <select class="value" id="picklist-coll_meth" disabled>
+              <option value="2">Map - Aerial Photo</option>
+              <option value="3">User determined via aerial imagery</option>
+              <option value="4">Device determined via GPS reciever</option>
+              
+            </select>
+            
+            
+          </div>
+        </li><li>
+          <div id="coll_status" class="value-group">
+            <label class="name">Location Review</label>
+            
+            <span class="assignment">:</span>
+            
+            <select class="value" id="picklist-coll_status" disabled>
+              <option value="0">Unverified</option>
+              <option value="1">Verified</option>
+              
+            </select>
+            
+            
+          </div>
+        </li><li>
+          <div id="coll_type" class="value-group">
+            <label class="name">Location Type</label>
+            
+            <span class="assignment">:</span>
+            
+            <select class="value" id="picklist-coll_type" disabled>
+              <option value="1">Discharge, Emission, or Release pt</option>
+              <option value="2">Monitoring or Sampling pt</option>
+              <option value="3">Area of Interest</option>
+              <option value="4">Front Door of Building</option>
+              <option value="5">Entrance to Area of Interest</option>
+              
+            </select>
+            
+            
+          </div>
+        </li>
+      </ul>
+     </div> 
+      <script>
+
+      // Editing this part may break some functionality.
+      // Tread lightly.
+
+
+      // This function is called when the page is loaded.
+      // it can be called separately to help with debugging an already loaded page.
+
+      $(function () {
+          $('.datetime').datetimepicker({
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            },
+            useSeconds: true,
+          });
+      });
+
+      var EditPage = {};
+
+        EditPage.OnPageReady = function () {
+
+          var permissionLevel = 'ADMIN';
+          if (AmigoPlatform.clientType() === 'web-app') {
+            AmigoPlatform.currentData = {
+              url: "/api/v1/users/10/projects/930/sql",
+              datasetUrl: "/api/v1/users/10/projects/930/datasets/6238",
+              projectUrl: "/api/v1/users/10/projects/930",
+              query: "SELECT * FROM dataset_6238 WHERE amigo_id = '{{ amigo_id }}'"
+            };
+            AmigoPlatform.initialize('edit');
+          } else if (AmigoPlatform.clientType() === 'ios') {
+            fetchedRow = AmigoPlatform.fetchRow();
+            relatedTables = AmigoPlatform.fetchRelatedTables();
+            permissionLevel = AmigoPlatform.fetchPermissionLevel();
+            Amigo.initFormEditWithRow(fetchedRow, relatedTables);
+          }
+
+          var permissionMapping = {
+              edit_geometry: ['EDIT', 'ADMIN', 'OWNER', 'CREATE'],
+              save_changes: ['EDIT', 'ADMIN', 'OWNER', 'CREATE'],
+              delete_record: ['EDIT', 'ADMIN', 'OWNER']
+          };
+
+          var editBtn = $($.find('.edit-geometry-btn', document));
+          if (permissionMapping.edit_geometry.indexOf(permissionLevel) == -1) {
+             editBtn.addClass('disabled').data('disabled', true);
+          } else if ( permissionLevel == 'CREATE' && !Amigo.isRowEmpty( fetchedRow ) ) {
+            editBtn.addClass('disabled').data('disabled', true);
+          } else {
+            editBtn.css('cursor', 'pointer');
+            editBtn.click(function () {
+              var currentRowState = Amigo.getCurrentRowState();
+              AmigoPlatform.editRowGeometry(JSON.stringify(currentRowState));
+            });
+          }
+
+
+          var saveBtn = $($.find('#save-button', document));
+          if (permissionMapping.save_changes.indexOf(permissionLevel) == -1) {
+            saveBtn.addClass('disabled').data('disabled', true);
+          } else if ( permissionLevel == 'CREATE' && !Amigo.isRowEmpty( fetchedRow ) ){
+            saveBtn.addClass('disabled').data('disabled', true);
+          } else {
+            saveBtn.css('cursor', 'pointer');
+            saveBtn.click(function () {
+              var currentRowState = Amigo.getCurrentRowState(true);
+              if (currentRowState) {
+                AmigoPlatform.saveEditedRow(JSON.stringify(currentRowState));
+              }
+            });
+          }
+
+          var delBtn = $($.find('#delete-button', document));
+          if (permissionMapping.delete_record.indexOf(permissionLevel) == -1) {
+            delBtn.addClass('disabled').data('disabled', true);
+          } else {
+            delBtn.css('cursor', 'pointer');
+            delBtn.click(function () {
+              AmigoPlatform.deleteRow(JSON.stringify(Amigo.row));
+            });
+          }
+        }
+
+        $(document).ready(EditPage.OnPageReady());
+
+      </script>
+  </body>
+</html>
